@@ -7,8 +7,14 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ}
+    # cap_add:
+    #   - NET_ADMIN
     volumes:
-      - ./config:/config
+      - ./logs/fromnet:/tmp/fromnet
+      - ./syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf
+      # - /path/to/syslog-ng/config:/config
+      # - /path/to/log:/var/log #optional
+
     ports:
       - 514:5514/udp
       - 601:6601/tcp
